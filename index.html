@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul>
+                <li id="name"></li>
+                <li id="surname"></li>
+                <li id="address"></li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <form class="mb-3">
+      <input name="name" type="text" placeholder="name" />
+      <br />
+      <input name="surname" type="text" placeholder="surname" />
+      <br />
+      <input name="address" type="text" placeholder="address" />
+      <br />
+      <input type="button" name="" id="" value="save" onclick="myfun()" />
+    </form>
+    <table border="1" id="mytable" class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- <td>Anil</td>
+          <td>Dollar</td>
+          <td>Neemuch</td>
+          <td>
+            <button class="btn btn-success">View</button>
+            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-danger">Delete</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let name = document.querySelector('input[name="name"]');
+      let surname = document.querySelector('input[name="surname"]');
+      let address = document.querySelector('input[name="address"]');
+
+      let tbdy = document.querySelector("#mytable tbody");
+      let myfun = () => {
+        console.log(tbdy);
+        tbdy.innerHTML += `<tr>
+                        <td>${name.value}</td>
+                        <td>${surname.value}</td>
+                        <td>${address.value}</td>
+                        <td>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick = vi(this)>View</button>
+                            <button class="btn btn-primary" >Edit</button>
+                            <button class="btn btn-danger" onclick = dele(this)>Delete</button>
+                        </td>
+                    </tr>`;
+        name.value = "";
+        surname.value = "";
+        address.value = "";
+      };
+      let dele = (elem) => {
+        elem.closest("tr").remove();
+      };
+      let vn = document.getElementById("name");
+      let vs = document.getElementById("surname");
+      let va = document.getElementById("address");
+      let vi = (elem) =>{
+       let name = elem.closest('tr').querySelector('td:first-child').innerHTML;
+       let surname = elem.closest('tr').querySelector('td:nth-child(2)').innerHTML;
+       let address = elem.closest('tr').querySelector('td:nth-child(3)').innerHTML;
+       console.log(name);
+       console.log(surname);
+       console.log(address);
+       document.querySelector(".modal-body ul li:first-child").innerHTML = name;
+       document.querySelector(".modal-body ul li:nth-child(2)").innerHTML = surname;
+       document.querySelector(".modal-body ul li:nth-child(3)").innerHTML = address;
+      }
+    </script>
+  </body>
+</html>
